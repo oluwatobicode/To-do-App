@@ -1,68 +1,123 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { DragDropContext } from "react-beautiful-dnd";
 import "./App.css";
+import Logo from "./Logo";
+import CodingNinja from "./CodingNinja";
+import InputTask from "./InputTask";
 
-function App() {
-  const [count, setCount] = useState(0);
+export default function App() {
+  const [items, setItems] = useState([]);
+
+  //Adds a new item to the list(todo array)
+  function handleAddItems(item) {
+    setItems((items) => [...items, item]);
+  }
+
+  //removes an item from the list(todo array)
+  function handleDeleteItems(id) {
+    setItems((items) => items.filter((items) => items.id !== id));
+  }
+
+  //clear Items
+  function handleClearItems() {
+    setItems([]);
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="app">
+      <Logo />
+
+      <InputTask onAddItems={handleAddItems} />
+
+      <List items={items} onDeleteItems={handleDeleteItems} />
+
+      <OrderTask items={items} onHandleClear={handleClearItems} />
+
+      <FilterTask items={items} />
+
+      <ReorderTasks />
+
+      <CodingNinja />
+    </div>
   );
 }
 
-export default App;
+function List({ items, onDeleteItems }) {
+  return (
+    <ul className="list-items">
+      {items.map((items) => (
+        <ToDoList item={items} key={items.id} onDeleteItems={onDeleteItems} />
+      ))}
+    </ul>
+  );
+}
 
-const initalTodo = [
-  {
-    id: 1,
-    description: "Complete online javascript course",
-    completed: false,
-  },
-  {
-    id: 2,
-    description: "Jog around the park",
-    completed: false,
-  },
-  {
-    id: 3,
-    description: "10 minutes meditation",
-    completed: false,
-  },
-  {
-    id: 4,
-    description: "Read for 1 hour",
-    completed: false,
-  },
-  {
-    id: 5,
-    description: "Pick up groceries",
-    completed: false,
-  },
-  {
-    id: 6,
-    description: "Complete Todo App on Frontend Mentor",
-    completed: false,
-  },
-];
+function ToDoList({ item, onDeleteItems }) {
+  return (
+    <li className="list">
+      <div
+        type="text"
+        className="completed checked"
+        name="checkbox--tasks"
+      ></div>
+      <div className="tasks">
+        <p className="description-todo completed-task">{item.description}</p>
+      </div>
+      <span onClick={() => onDeleteItems(item.id)}>
+        <img
+          src="./src/images/icon-cross.svg"
+          className="close-btn"
+          alt="close-btn"
+        />
+      </span>
+    </li>
+  );
+}
+
+function OrderTask({ items, onHandleClear }) {
+  let tasks;
+  tasks = items;
+
+  if (!tasks.length)
+    return (
+      <div className="pre-footer">
+        <p>Start Adding Tasks 🙃</p>
+      </div>
+    );
+
+  const allTasks = items.length;
+
+  return (
+    <footer className="footer">
+      <div className="footer-items">
+        <p>
+          {allTasks}
+          {tasks.length < 1 ? `No task` : " items left"}
+        </p>
+        <div>
+          <button onClick={onHandleClear} className="clear-completed">
+            Clear Completed
+          </button>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function FilterTask({ items }) {
+  return (
+    <div className="task-filter">
+      <button>All</button>
+      <button>Active</button>
+      <button>Completed</button>
+    </div>
+  );
+}
+
+function ReorderTasks() {
+  return (
+    <div className="extra">
+      <p>Drag and drop to reorder list</p>
+    </div>
+  );
+}
