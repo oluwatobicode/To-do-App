@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { DragDropContext } from "react-beautiful-dnd";
 import "./App.css";
-import Logo from "./Logo";
-import CodingNinja from "./CodingNinja";
-import InputTask from "./InputTask";
+import Logo from "./components/Logo";
+import CodingNinja from "./components/CodingNinja";
+import InputTask from "./components/InputTask";
+import OrderTask from "./components/OrderTask";
+import ReorderTasks from "./components/ReorderTasks";
+import List from "./components/List";
+import FilterTask from "./components/FilterTask";
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -38,86 +41,6 @@ export default function App() {
       <ReorderTasks />
 
       <CodingNinja />
-    </div>
-  );
-}
-
-function List({ items, onDeleteItems }) {
-  return (
-    <ul className="list-items">
-      {items.map((items) => (
-        <ToDoList item={items} key={items.id} onDeleteItems={onDeleteItems} />
-      ))}
-    </ul>
-  );
-}
-
-function ToDoList({ item, onDeleteItems }) {
-  return (
-    <li className="list">
-      <div
-        type="text"
-        className="completed checked"
-        name="checkbox--tasks"
-      ></div>
-      <div className="tasks">
-        <p className="description-todo completed-task">{item.description}</p>
-      </div>
-      <span onClick={() => onDeleteItems(item.id)}>
-        <img
-          src="./src/images/icon-cross.svg"
-          className="close-btn"
-          alt="close-btn"
-        />
-      </span>
-    </li>
-  );
-}
-
-function OrderTask({ items, onHandleClear }) {
-  let tasks;
-  tasks = items;
-
-  if (!tasks.length)
-    return (
-      <div className="pre-footer">
-        <p>Start Adding Tasks 🙃</p>
-      </div>
-    );
-
-  const allTasks = items.length;
-
-  return (
-    <footer className="footer">
-      <div className="footer-items">
-        <p>
-          {allTasks}
-          {tasks.length < 1 ? `No task` : " items left"}
-        </p>
-        <div>
-          <button onClick={onHandleClear} className="clear-completed">
-            Clear Completed
-          </button>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-function FilterTask({ items }) {
-  return (
-    <div className="task-filter">
-      <button>All</button>
-      <button>Active</button>
-      <button>Completed</button>
-    </div>
-  );
-}
-
-function ReorderTasks() {
-  return (
-    <div className="extra">
-      <p>Drag and drop to reorder list</p>
     </div>
   );
 }
