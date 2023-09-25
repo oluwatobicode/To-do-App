@@ -10,7 +10,6 @@ export default function InputTask({ onAddItems }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (!description) return;
-    console.log(newTasks);
     onAddItems(newTasks);
     setDescription("");
   }

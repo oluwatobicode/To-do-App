@@ -7,6 +7,7 @@ import OrderTask from "./components/OrderTask";
 import ReorderTasks from "./components/ReorderTasks";
 import List from "./components/List";
 import FilterTask from "./components/FilterTask";
+import { func } from "prop-types";
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -26,17 +27,61 @@ export default function App() {
     setItems([]);
   }
 
+  //CHECKED
+  function handleChecked(id) {
+    setItems((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, packed: !item.packed } : item
+      )
+    );
+  }
+
+  //Show EVERYTHING
+  function showAll(items) {
+    setItems(items);
+  }
+
+  // SHOW ACTIVE ( NOT YET COMPLETED)
+  function showActive(packed) {
+    setItems((items) =>
+      items.filter((item) => (item.packed !== !packed ? item : ""))
+    );
+  }
+
+  //Show COMPLETED
+  function handleShowCompleted(packed) {
+    setItems((items) =>
+      items.filter((item) => (item.packed === !packed ? item : ""))
+    );
+  }
+
+  // //Show COMPLETED
+  // function handleShowCompleted(id) {
+  //   setItems((items) =>
+  //     items.filter((item) => (item.id === id ? item : ""))
+  //   );
+  // }
+
   return (
     <div className="app">
       <Logo />
 
       <InputTask onAddItems={handleAddItems} />
 
-      <List items={items} onDeleteItems={handleDeleteItems} />
+      <List
+        items={items}
+        onDeleteItems={handleDeleteItems}
+        handleChecked={handleChecked}
+      />
 
       <OrderTask items={items} onHandleClear={handleClearItems} />
 
-      <FilterTask items={items} />
+      <FilterTask
+        items={items}
+        showActive={showActive}
+        showAll={showAll}
+        handleShowCompleted={handleShowCompleted}
+      />
 
       <ReorderTasks />
 

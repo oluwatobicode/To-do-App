@@ -18,6 +18,7 @@ export default function OrderTask({ items, onHandleClear }) {
           {allTasks}
           {tasks.length < 1 ? `No task` : " items left"}
         </p>
+
         <div>
           <button onClick={onHandleClear} className="clear-completed">
             Clear Completed

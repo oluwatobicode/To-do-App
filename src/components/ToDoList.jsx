@@ -1,13 +1,20 @@
-export default function ToDoList({ item, onDeleteItems }) {
+export default function ToDoList({ item, onDeleteItems, handleChecked }) {
   return (
     <li className="list">
-      <div
+      <button
         type="text"
-        className="completed checked"
+        className="completed"
+        id={item.packed ? "checked" : {}}
         name="checkbox--tasks"
-      ></div>
+        onClick={() => handleChecked(item.id)}
+      ></button>
       <div className="tasks">
-        <p className="description-todo completed-task">{item.description}</p>
+        <p
+          className="description-todo"
+          style={item.packed ? { textDecoration: "line-through" } : {}}
+        >
+          {item.description}
+        </p>
       </div>
       <span onClick={() => onDeleteItems(item.id)}>
         <img
