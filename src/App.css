@@ -15,6 +15,15 @@
   ---VeryDarkGrayishBlue--: hsl(237, 14%, 26%);
 }
 
+/* [data-theme="light"] {
+  background-image: url(./images/bg-desktop-light.jpg);
+  ---VeryDarkBlue--: hsl(0, 0%, 98%);
+  ---VeryDarkDesaturatedBlue--: hsl(236, 33%, 92%);
+  ---LightGrayishBlue--: hsl(233, 11%, 84%);
+  ---LightGrayishBlueHover--: hsl(236, 9%, 61%);
+  ---VeryDarkGrayishBlue--: hsl(235, 19%, 35%);
+} */
+
 body {
   font-family: "Josefin Sans", sans-serif;
   font-size: 18px;
@@ -33,7 +42,7 @@ body {
 
 .app {
   height: auto;
-  width: 540px;
+  max-width: 540px;
 }
 
 .logo {
@@ -125,16 +134,6 @@ body {
   background-repeat: no-repeat;
   background-position: 50%, -50%;
 }
-
-/* input[type="checkbox"] {
-  width: 26px;
-  height: 26px;
-  background-color: transparent;
-  border-radius: 50px;
-  border: 1px solid var(---LightGrayishBlue--);
-  cursor: pointer;
-  accent-color: red;
-} */
 
 .completed:active {
   background-color: reds;
@@ -228,4 +227,40 @@ body {
 
 .task-filter > button:hover {
   color: var(---LightGrayishBlue--);
+}
+
+/* RESPONSIVNESS FOR TABLETS */
+@media screen and (max-width: 500px) {
+  body {
+    background-image: url(/src/images/bg-mobile-dark.jpg);
+    width: 200px;
+    background-repeat: no-repeat;
+  }
+
+  .app {
+    margin-left: 180px;
+  }
+
+  .logo {
+    justify-content: space-evenly;
+  }
+
+  .input-task {
+    width: 350px;
+  }
+
+  .list {
+    width: 350px;
+  }
+
+  .pre-footer {
+    width: 350px;
+  }
+  .footer {
+    width: 350px;
+  }
+
+  .task-filter {
+    width: 350px;
+  }
 }

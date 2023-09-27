@@ -36,32 +36,6 @@ export default function App() {
     );
   }
 
-  //Show EVERYTHING
-  function showAll(items) {
-    setItems(items);
-  }
-
-  // SHOW ACTIVE ( NOT YET COMPLETED)
-  function showActive(packed) {
-    setItems((items) =>
-      items.filter((item) => (item.packed !== !packed ? item : ""))
-    );
-  }
-
-  //Show COMPLETED
-  function handleShowCompleted(packed) {
-    setItems((items) =>
-      items.filter((item) => (item.packed === !packed ? item : ""))
-    );
-  }
-
-  // //Show COMPLETED
-  // function handleShowCompleted(id) {
-  //   setItems((items) =>
-  //     items.filter((item) => (item.id === id ? item : ""))
-  //   );
-  // }
-
   return (
     <div className="app">
       <Logo />
@@ -76,12 +50,7 @@ export default function App() {
 
       <OrderTask items={items} onHandleClear={handleClearItems} />
 
-      <FilterTask
-        items={items}
-        showActive={showActive}
-        showAll={showAll}
-        handleShowCompleted={handleShowCompleted}
-      />
+      <FilterTask items={items} />
 
       <ReorderTasks />
 

@@ -1,16 +1,30 @@
-export default function FilterTask({
-  items,
-  showAll,
-  showActive,
-  handleShowCompleted,
-}) {
+import { useState } from "react";
+
+export default function FilterTask({ items }) {
+  const [filter, setFilter] = useState([]);
+
+  let filterAray;
+  filterAray = items;
+
+  //Show EVERYTHING
+  function showAll(id) {
+    setFilter(filter);
+  }
+
+  // SHOW ACTIVE ( NOT YET COMPLETED)
+  function showActive(packed) {
+    //filter by pending
+  }
+
+  //Show COMPLETED
+  function handleShowCompleted(packed) {
+    //filter by completed
+  }
   return (
     <div className="task-filter">
-      <button onClick={() => showAll(items)}>All</button>
-      <button onClick={() => showActive(items.packed)}>Active</button>
-      <button onClick={() => handleShowCompleted(items.packed)}>
-        Completed
-      </button>
+      <button onClick={() => {}}>All</button>
+      <button onClick={() => {}}>Active</button>
+      <button onClick={() => {}}>Completed</button>
     </div>
   );
 }

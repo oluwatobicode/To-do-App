@@ -1,3 +1,5 @@
+import { func } from "prop-types";
+
 export default function OrderTask({ items, onHandleClear }) {
   let tasks;
   tasks = items;
@@ -9,13 +11,15 @@ export default function OrderTask({ items, onHandleClear }) {
       </div>
     );
 
-  const allTasks = items.length;
+  function allTasks(id) {
+    return items.id === id ? items.length : items.length - 1;
+  }
 
   return (
     <footer className="footer">
       <div className="footer-items">
         <p>
-          {allTasks}
+          {allTasks(items.id)}
           {tasks.length < 1 ? `No task` : " items left"}
         </p>
 
