@@ -18,7 +18,7 @@ export default function ToDoList({ item, onDeleteItems, handleChecked }) {
       </div>
       <span onClick={() => onDeleteItems(item.id)}>
         <img
-          src="./src/images/icon-cross.svg"
+          src="./images/icon-cross.svg"
           className="close-btn"
           alt="close-btn"
         />
