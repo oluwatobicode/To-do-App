@@ -4,7 +4,7 @@ export default function Logo() {
       <h1>TODO</h1>
       <span>
         <img
-          src="./src/images/icon-sun.svg"
+          src="./images/icon-sun.svg"
           className="dark-mode-img"
           alt="dark-mode"
         />
