@@ -25,10 +25,10 @@
 } */
 
 body {
+  background-image: url(/images/bg-desktop-dark.jpg);
   font-family: "Josefin Sans", sans-serif;
   font-size: 18px;
   background-color: var(---VeryDarkBlue--);
-  background-image: url(./images/bg-desktop-dark.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
@@ -232,7 +232,7 @@ body {
 /* RESPONSIVNESS FOR TABLETS */
 @media screen and (max-width: 500px) {
   body {
-    background-image: url(./images/bg-mobile-dark.jpg);
+    background-image: url(images/bg-desktop-dark.jpg);
     width: 200px;
     background-repeat: no-repeat;
   }
