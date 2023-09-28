@@ -35,7 +35,7 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./public/Screen%20Shot%202023-09-28%20at%2011.30.21%20AM.png)
 
 ### Links
 
