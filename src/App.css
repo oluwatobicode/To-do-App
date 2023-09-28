@@ -13,6 +13,7 @@
   ---DarkGrayishBlue--: hsl(234, 11%, 52%);
   ---VeryDarkGrayishBlue--: hsl(233, 14%, 35%);
   ---VeryDarkGrayishBlue--: hsl(237, 14%, 26%);
+  ---CHECKED--: hsl(192, 100%, 67%);
 }
 
 /* [data-theme="light"] {
@@ -129,14 +130,10 @@ body {
 }
 
 #checked {
-  background-color: red;
-  background-image: url(./images/icon-check.svg);
+  background-image: url(./images/icon-check.svg),
+    linear-gradient(180deg, #57ddff, #c058f3);
   background-repeat: no-repeat;
   background-position: 50%, -50%;
-}
-
-.completed:active {
-  background-color: reds;
 }
 
 .tasks {

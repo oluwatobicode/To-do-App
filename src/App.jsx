@@ -11,6 +11,7 @@ import { func } from "prop-types";
 
 export default function App() {
   const [items, setItems] = useState([]);
+  const [filter, setFilter] = useState("all"); // Initialize filter state with "all"
 
   //Adds a new item to the list(todo array)
   function handleAddItems(item) {
@@ -36,6 +37,31 @@ export default function App() {
     );
   }
 
+  // Show ALL items
+  function showAll() {
+    setFilter("all");
+  }
+
+  // Show ACTIVE items (NOT YET COMPLETED)
+  function showActive() {
+    setFilter("active");
+  }
+
+  // Show COMPLETED items
+  function showCompleted() {
+    setFilter("completed");
+  }
+
+  // Modify the List component to filter items based on the filter state
+  const filteredItems = items.filter((item) => {
+    if (filter === "active") {
+      return !item.packed;
+    } else if (filter === "completed") {
+      return item.packed;
+    }
+    return true; // "all" filter or default
+  });
+
   return (
     <div className="app">
       <Logo />
@@ -43,14 +69,19 @@ export default function App() {
       <InputTask onAddItems={handleAddItems} />
 
       <List
-        items={items}
+        items={filteredItems}
         onDeleteItems={handleDeleteItems}
         handleChecked={handleChecked}
       />
 
-      <OrderTask items={items} onHandleClear={handleClearItems} />
+      <OrderTask items={filteredItems} onHandleClear={handleClearItems} />
 
-      <FilterTask items={items} />
+      <FilterTask
+        items={filteredItems}
+        showAll={showAll}
+        showActive={showActive}
+        showCompleted={showCompleted}
+      />
 
       <ReorderTasks />
 
