@@ -25,7 +25,7 @@ export default function OrderTask({ items, onHandleClear }) {
 
         <div>
           <button onClick={onHandleClear} className="clear-completed">
-            Clear Completed
+            Clear All
           </button>
         </div>
       </div>

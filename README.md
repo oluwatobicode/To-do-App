@@ -88,5 +88,5 @@ const filteredItems = items.filter((item) => {
 ## Author
 
 - Website - [Odetokun Treasure](https://linktr.ee/codingninja)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/@Oluwatobiiiiii)
+- Frontend Mentor - [@Oluwatobiiiii](https://www.frontendmentor.io/profile/@Oluwatobiiiiii)
 - Twitter - [@oluwatobicodes](https://www.twitter.com/oluwatobicodes)
